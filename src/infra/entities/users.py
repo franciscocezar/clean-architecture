@@ -7,10 +7,20 @@ class Users(Base):
     """Users Entity"""
 
     __tablename__ = "users"
+
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     id_pet = relationship("Pets")
 
     def __repr__(self):
-        return f"Usr [name={self.name}]"
+        return f"User [name={self.name}]"
+
+    def __eq__(self, other):
+        if (
+            self.id == other.id
+            and self.name == other.name
+            and self.password == other.password
+        ):
+            return True
+        return False
