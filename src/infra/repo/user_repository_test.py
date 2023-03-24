@@ -23,6 +23,7 @@ def test_insert_user():
     ).fetchone()
 
     engine.execute(text("DELETE FROM users WHERE id='{}'".format(new_user.id)))
+    engine.commit()
     engine.close()
 
     assert new_user.id == query_user.id
@@ -55,4 +56,5 @@ def test_select_user():
     assert data in query_user3
 
     engine.execute(text(f"DELETE FROM users WHERE id='{user_id}'"))
+    engine.commit()
     engine.close()
