@@ -1,11 +1,12 @@
 from src.domain.models import Users
 from src.infra.config import DBConnectionHandler
+from src.data.interfaces import UserRepositoryInterface
 
 # from sqlalchemy.orm.exc import NoResultFound
 from src.infra.entities import Users as UsersModel
 
 
-class UserRepository:
+class UserRepository(UserRepositoryInterface):
     """Class to manage User Repository"""
 
     @classmethod
