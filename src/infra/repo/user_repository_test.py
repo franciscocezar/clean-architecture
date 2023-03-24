@@ -17,7 +17,7 @@ def test_insert_user():
     password = faker.word()
     # engine = db_connection_handler.get_engine()
 
-    # SQL Commands
+    # new_user =
     user_repository.insert_user(name, password)
 
     # query_user = engine.execute(
