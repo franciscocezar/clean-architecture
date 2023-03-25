@@ -31,6 +31,7 @@ def test_insert_pet():
     assert new_pet.user_id == query_user.user_id
 
     engine.execute(text(f"DELETE FROM pets WHERE id='{new_pet.id}'"))
+    engine.commit()
     engine.close()
 
 
@@ -65,4 +66,5 @@ def test_select_pet():
     assert data in query_pets3
 
     engine.execute(text(f"DELETE FROM pets WHERE id='{pet_id}'"))
+    engine.commit()
     engine.close()
