@@ -1,17 +1,20 @@
-from typing import Type
+from typing import Type, Dict, List
 from src.data.find_user import FindUser
 from src.data.interfaces import PetRepositoryInterface as PetRepository
 from src.domain.use_cases import RegisterPet as RegisterPetInterface
+from src.domain.models import Users, Pets
 
 
 class RegisterPet(RegisterPetInterface):
-    """Class to define usecase: Register Pet"""
+    """Class to define use case: Register Pet"""
 
-    def __init__(self, pet_repository: Type[PetRepository], find_user: Type[FindUser]):
+    def __init__(self, pet_repository: List[PetRepository], find_user: Type[FindUser]):
         self.pet_repository = pet_repository
         self.find_user = find_user
 
-    def registry(self, name, specie, user_information, age=None):
+    def registry(
+        self, name: str, specie: str, user_information: Dict[int, str], age: int = None
+    ) -> Dict[bool, Pets]:
         """Registry Pet
         :param - name: pet name
                - specie: type of the specie
@@ -22,6 +25,7 @@ class RegisterPet(RegisterPetInterface):
 
         response = None
 
+        # Validating entry and trying to find an user
         validate_entry = isinstance(name, str) and isinstance(specie, str)
         user = self.__find_user_information(user_information)
         checker = validate_entry and user["Success"]
@@ -33,7 +37,9 @@ class RegisterPet(RegisterPetInterface):
 
         return {"Success": checker, "Data": response}
 
-    def __find_user_information(self, user_information):
+    def __find_user_information(
+        self, user_information: Dict[int, str]
+    ) -> Dict[bool, List[Users]]:
         """Check user Infos and select user
         :param - user_information: Dictionary with user_id and/or user_name
         :return - Dictionary with the response of find_use use case
