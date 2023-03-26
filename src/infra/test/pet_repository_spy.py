@@ -18,7 +18,7 @@ class PetRepositorySpy:
 
         return mock_pet()
 
-    def select_pet(self, pet_id, user_id):
+    def select_pet(self, pet_id=None, user_id=None):
         """Spy to all the attributes"""
 
         self.select_pet_params["pet_id"] = pet_id

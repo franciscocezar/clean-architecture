@@ -84,7 +84,7 @@ def test_by_id_and_name():
         user_id=attribute["user_id"], name=attribute["name"]
     )
 
-    # Testing Input
+    # Testing Inputs
     assert user_repo.select_user_params["name"] == attribute["name"]
     assert user_repo.select_user_params["user_id"] == attribute["user_id"]
 
