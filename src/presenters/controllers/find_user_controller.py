@@ -23,7 +23,7 @@ class FindUserController:
                 user_id = http_request.query["user_id"]
                 user_name = http_request.query["user_name"]
                 response = self.find_user_use_case.by_id_and_name(
-                    user_id=user_id, user_name=user_name
+                    user_id=user_id, name=user_name
                 )
 
             elif (
@@ -38,7 +38,7 @@ class FindUserController:
                 and "user_name" in query_string_params
             ):
                 user_name = http_request.query["user_name"]
-                response = self.find_user_use_case.by_name(user_name=user_id)
+                response = self.find_user_use_case.by_name(name=user_name)
 
             else:
                 response = {"Success": False, "Data": None}
