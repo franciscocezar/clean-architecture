@@ -19,8 +19,6 @@ class RegisterPetController:
         if http_request.body:
             body_params = http_request.body.keys()
 
-            # keys = ["name", "specie", "user_information"]
-            # if body_params == keys:
             if (
                 "name" in body_params
                 and "specie" in body_params
