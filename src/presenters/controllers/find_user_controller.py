@@ -5,7 +5,7 @@ from src.presenters.errors import HttpErrors
 
 
 class FindUserController:
-    """Class ro define controller to find_user use case"""
+    """Class to define controller to find_user use case"""
 
     def __init__(self, find_user_use_case: Type[FindUser]):
         self.find_user_use_case = find_user_use_case
@@ -51,7 +51,7 @@ class FindUserController:
             return HttpResponse(status_code=200, body=response["Data"])
 
         # If no query in http_request
-        http_error = HttpErrors.erro_400()
+        http_error = HttpErrors.error_400()
         return HttpResponse(
             status_code=http_error["status_code"], body=http_error["body"]
         )
