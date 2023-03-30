@@ -8,11 +8,11 @@ from src.presenters.helpers import HttpRequest
 faker = Faker()
 
 
-def test_handle():
-    """Testing handle in RegisnterPetController"""
+def test_route():
+    """Testing route in RegisnterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), None)
-    register_pet_handle = RegisterPetController(register_pet_use_case)
+    register_pet_route = RegisterPetController(register_pet_use_case)
 
     attributes = {
         "name": faker.word(),
@@ -24,7 +24,7 @@ def test_handle():
         },
     }
 
-    response = register_pet_handle.handle(HttpRequest(body=attributes))
+    response = register_pet_route.route(HttpRequest(body=attributes))
 
     print(response)
 
@@ -43,12 +43,12 @@ def test_handle():
 
 
 def test_route_error_no_body():
-    """Testing handle in RegisnterPetController"""
+    """Testing route in RegisnterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), None)
-    register_pet_handle = RegisterPetController(register_pet_use_case)
+    register_pet_route = RegisterPetController(register_pet_use_case)
 
-    response = register_pet_handle.handle(HttpRequest())
+    response = register_pet_route.route(HttpRequest())
 
     print(response)
 
@@ -61,14 +61,14 @@ def test_route_error_no_body():
 
 
 def test_route_error_wrong_body():
-    """Testing handle in RegisnterPetController"""
+    """Testing route in RegisnterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), None)
-    register_pet_handle = RegisterPetController(register_pet_use_case)
+    register_pet_route = RegisterPetController(register_pet_use_case)
 
     attributes = {"name": faker.word()}
 
-    response = register_pet_handle.handle(HttpRequest(body=attributes))
+    response = register_pet_route.route(HttpRequest(body=attributes))
 
     print(response)
 
@@ -81,10 +81,10 @@ def test_route_error_wrong_body():
 
 
 def test_route_error_without_user_information():
-    """Testing handle in RegisnterPetController"""
+    """Testing route in RegisnterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), None)
-    register_pet_handle = RegisterPetController(register_pet_use_case)
+    register_pet_route = RegisterPetController(register_pet_use_case)
 
     attributes = {
         "name": faker.word(),
@@ -93,7 +93,7 @@ def test_route_error_without_user_information():
         "user_information": {},
     }
 
-    response = register_pet_handle.handle(HttpRequest(body=attributes))
+    response = register_pet_route.route(HttpRequest(body=attributes))
 
     print(response)
 
@@ -106,10 +106,10 @@ def test_route_error_without_user_information():
 
 
 def test_route_error_without_user_id():
-    """Testing handle in RegisnterPetController"""
+    """Testing route in RegisnterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), None)
-    register_pet_handle = RegisterPetController(register_pet_use_case)
+    register_pet_route = RegisterPetController(register_pet_use_case)
 
     attributes = {
         "name": faker.word(),
@@ -118,7 +118,7 @@ def test_route_error_without_user_id():
         "user_information": {"user_name": faker.word()},
     }
 
-    response = register_pet_handle.handle(HttpRequest(body=attributes))
+    response = register_pet_route.route(HttpRequest(body=attributes))
 
     print(response)
 
