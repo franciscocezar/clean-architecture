@@ -1,3 +1,4 @@
+from sqlalchemy.exc import NoResultFound
 from src.infra.config import DBConnectionHandler
 from src.infra.entities import Pets as PetsModel
 from src.data.interfaces import PetRepositoryInterface
@@ -80,7 +81,8 @@ class PetRepository(PetRepositoryInterface):
                     query_data = [data]
 
             return query_data
-
+        except NoResultFound:
+            return []
         except:
             db_connection.session.rollback()
             raise
